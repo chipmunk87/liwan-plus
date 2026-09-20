@@ -3,13 +3,13 @@
 <div align="center">
     <h2>
         <img float="left" src="./web/public/favicon.svg" width="16px"/>
-        Liwan (Sessions Edition)
+        Liwan-Plus
     </h2>
     <p><strong>Self-hosted, privacy-first web analytics with Visitor Sessions & Activity Timelines</strong></p>
     <p><em>Maintained fork of <a href="https://github.com/explodingcamera/liwan">explodingcamera/liwan</a></em></p>
 <div>
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chipmunk87/liwan/test.yaml?style=flat-square)](https://github.com/chipmunk87/liwan/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chipmunk87/liwan-plus/test.yaml?style=flat-square)](https://github.com/chipmunk87/liwan-plus/actions)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE.md)
 
 </div>

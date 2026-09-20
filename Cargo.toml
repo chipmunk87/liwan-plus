@@ -3,7 +3,7 @@ name = "liwan"
 version = "1.6.0"
 edition = "2024"
 rust-version = "1.98"
-repository = "https://github.com/explodingcamera/liwan"
+repository = "https://github.com/chipmunk87/liwan-plus"
 license = "Apache-2.0"
 publish = false
 
