@@ -3,46 +3,88 @@
 <div align="center">
     <h2>
         <img float="left" src="./web/public/favicon.svg" width="16px"/>
-        <a href="https://liwan.dev">liwan.dev</a> - Self-hosted, privacy-first web analytics
+        Liwan (Sessions Edition)
     </h2>
+    <p><strong>Self-hosted, privacy-first web analytics with Visitor Sessions & Activity Timelines</strong></p>
+    <p><em>Maintained fork of <a href="https://github.com/explodingcamera/liwan">explodingcamera/liwan</a></em></p>
 <div>
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/explodingcamera/liwan/test.yaml?style=flat-square)
-![GitHub Release](https://img.shields.io/github/v/release/explodingcamera/liwan?style=flat-square)
-[![Container](https://img.shields.io/badge/Container-ghcr.io%2Fexplodingcamera%2Fliwan%3Alatest-blue?style=flat-square)](https://github.com/explodingcamera/liwan/pkgs/container/liwan)
-
-[Live demo](https://demo.liwan.dev/p/liwan.dev) · [Getting started](https://liwan.dev/getting-started/) · [Configuration](https://liwan.dev/reference/configuration/) · [Collected data](https://liwan.dev/collected-data/)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chipmunk87/liwan/test.yaml?style=flat-square)](https://github.com/chipmunk87/liwan/actions)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE.md)
 
 </div>
 
 </div>
 
 <div align="center">
-<a href="https://demo.liwan.dev/p/liwan.dev"><img width="45%" src="./data/images/liwan-desktop-dark.png" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://demo.liwan.dev/p/liwan.dev"><img width="45%" src="./data/images/liwan-desktop.png" /></a>
+<img width="45%" src="./data/images/liwan-desktop-dark.png" alt="Liwan Dark Mode" />&nbsp;&nbsp;&nbsp;
+<img width="45%" src="./data/images/liwan-desktop.png" alt="Liwan Light Mode" />
 </div>
 
-## Features
+---
+
+### What Makes This Fork Different?
+
+This edition builds directly upon Liwan's ultra-lightweight Rust + Svelte foundation, adding powerful visitor analysis and UX enhancements:
+
+* **Visitor Sessions Drilldown**: Inspect full visitor journeys over time. See session duration, total pageviews, bounce indicators, device/OS details, and entry referrers at a glance.
+* **Interactive Activity Timeline**: Click any visitor session to open an in-depth activity timeline detailing every visited path and event. Includes a clickable sort toggle to view events **oldest-to-newest** or **newest-to-oldest**.
+* **12-Hour / 24-Hour Time Format Setting**: Configure your preferred time format (12h AM/PM vs. 24h clock) under *My Account* settings, reflected throughout all activity timelines.
+* **Interactive Dashboard Controls**:
+  * **Collapsible Traffic Chart**: Minimize the main traffic overview chart to maximize screen space for dimension cards.
+  * **Map Zoom Lock**: Lock/unlock world map zooming to prevent accidental scrolling on touchscreens and trackpads.
+  * **Font Scaling & Spacing**: On-screen `Aa` font size switcher with persistent local preferences.
+  * **Smart Dimension Cards**: Automatically collapses low-row cards to eliminate unnecessary whitespace.
+
+---
+
+## Core Features
 
 **Understand your traffic**\
 See your most-visited pages, where visitors come from, and how traffic changes over time. The dashboard updates automatically, with bot filtering enabled by default.
 
 **Easy to self-host**\
-Run Liwan as a single binary or Docker container. The dashboard and database are built in, with no additional services to manage.
+Run Liwan as a single binary or Docker container. The dashboard and embedded database are built in, with no external database services (Postgres, Redis, ClickHouse) required.
 
 **Privacy first**\
-No tracking cookies or cross-site tracking. Your analytics data stays on your server, and you control what’s collected and how long it’s kept.
-[Read more about data collection](https://liwan.dev/collected-data/).
+No tracking cookies or invasive fingerprinting. Your analytics data stays exclusively on your own server.
 
 **Collect only what you need**\
-Choose what data to collect and how long to keep it. Location detail is adjustable, and campaign attribution and session metrics can be disabled independently.
+Choose what data to collect and how long to retain it. Location detail is adjustable, and campaign attribution and session metrics can be configured independently.
 
-**Lightweight tracking**\
-Add a small tracking script to your website with a single line of HTML. Works with any framework or CMS.
+**Lightweight tracking script**\
+Embed a tiny tracking script on your website with a single line of HTML. Compatible with any web framework, static site generator, or CMS.
 
-**Single sign-on**\
-Manage accounts with Google Workspaces, Microsoft Entra, or your own OpenID Connect provider like Keycloak or Dex.
+**Single sign-on (SSO)**\
+Manage user accounts with Google Workspace, Microsoft Entra, or your own OpenID Connect provider like Keycloak or Dex.
+
+---
+
+## Building from Source
+
+### Prerequisites
+* [Rust](https://www.rust-lang.org/) (latest stable)
+* [Bun](https://bun.sh/) (for building the web dashboard)
+
+### Build Steps
+```bash
+# 1. Build the web frontend
+cd web
+bun install
+bun run build
+cd ..
+
+# 2. Build the Rust server binary
+cargo build --release
+```
+The compiled binary will be located at `target/release/liwan`.
+
+---
+
+## Attribution & Upstream
+
+This project is an open-source fork of [explodingcamera/liwan](https://github.com/explodingcamera/liwan), originally created by [@explodingcamera](https://github.com/explodingcamera). We are deeply grateful for their excellent foundation and architecture.
 
 ## License
 
-Unless otherwise noted, the code in this repository is available under the terms of the Apache-2.0 license. See [LICENSE](LICENSE.md) for more information.
+Unless otherwise noted, the code in this repository is available under the terms of the **Apache-2.0** license. See [LICENSE](LICENSE.md) for more details.
