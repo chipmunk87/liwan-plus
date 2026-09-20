@@ -6,7 +6,7 @@
         Liwan-Plus
     </h2>
     <p><strong>Self-hosted, privacy-first web analytics with Visitor Sessions & Activity Timelines</strong></p>
-    <p><em>Maintained fork of <a href="https://github.com/explodingcamera/liwan">explodingcamera/liwan</a></em></p>
+    <p><em>Enhanced edition built on <a href="https://github.com/explodingcamera/liwan">explodingcamera/liwan</a></em></p>
 <div>
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chipmunk87/liwan-plus/test.yaml?style=flat-square)](https://github.com/chipmunk87/liwan-plus/actions)
