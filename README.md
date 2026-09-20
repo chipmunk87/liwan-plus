@@ -10,6 +10,7 @@
 <div>
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chipmunk87/liwan-plus/test.yaml?style=flat-square)](https://github.com/chipmunk87/liwan-plus/actions)
+[![Latest Release](https://img.shields.io/github/v/release/chipmunk87/liwan-plus?style=flat-square)](https://github.com/chipmunk87/liwan-plus/releases/latest)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE.md)
 
 </div>
