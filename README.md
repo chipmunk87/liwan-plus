@@ -17,8 +17,10 @@
 </div>
 
 <div align="center">
-<img width="45%" src="./data/images/liwan-desktop-dark.png" alt="Liwan Dark Mode" />&nbsp;&nbsp;&nbsp;
-<img width="45%" src="./data/images/liwan-desktop.png" alt="Liwan Light Mode" />
+  <img width="49%" src="./data/images/liwan-plus-dashboard.png" alt="Liwan-Plus Dashboard" />&nbsp;
+  <img width="49%" src="./data/images/liwan-plus-sessions.png" alt="Liwan-Plus Visitor Sessions & Activity Timeline" />
+  <br/>
+  <sub><em>Left: Real-time traffic, font size toggle, map zoom lock · Right: Visitor Sessions & expandable Activity Timeline</em></sub>
 </div>
 
 ---
