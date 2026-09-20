@@ -37,7 +37,7 @@ jobs:
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
         id: meta
         with:
-          images: ghcr.io/${{ github.actor }}/liwan
+          images: ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{version}},value=${{ steps.semver.outputs.SEMVER_VERSION }}
             type=semver,pattern={{major}}.{{minor}},value=${{ steps.semver.outputs.SEMVER_VERSION }}
@@ -58,10 +58,10 @@ jobs:
           # sanitize tag: only keep alphanum, dot, underscore, dash
           SAFE_TAG="${INPUT_TAG//[^A-Za-z0-9._-]/_}"
 
-          curl -fsSL "https://github.com/explodingcamera/liwan/releases/download/$SAFE_TAG/liwan-x86_64-unknown-linux-musl.tar.gz" \
+          curl -fsSL "https://github.com/${{ github.repository }}/releases/download/$SAFE_TAG/liwan-x86_64-unknown-linux-musl.tar.gz" \
             | tar -xz -C dist/amd64 &
 
-          curl -fsSL "https://github.com/explodingcamera/liwan/releases/download/$SAFE_TAG/liwan-aarch64-unknown-linux-musl.tar.gz" \
+          curl -fsSL "https://github.com/${{ github.repository }}/releases/download/$SAFE_TAG/liwan-aarch64-unknown-linux-musl.tar.gz" \
             | tar -xz -C dist/arm64 &
 
           wait
