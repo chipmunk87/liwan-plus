@@ -67,11 +67,15 @@ pub fn session_list_report(
             sum(case when time_from_last_event is null or time_from_last_event > {SESSION_DURATION_SQL} then 1 else 0 end) as visits,
             sum(case when event = 'pageview' then 1 else 0 end) as views,
             sum(case when event <> 'pageview' then 1 else 0 end) as events,
-            mode(browser) as browser,
-            mode(platform) as platform,
-            mode(mobile) as mobile,
-            mode(country) as country,
-            mode(city) as city
+            -- Most-recent identity per group: O(1) per group, unlike mode()
+            -- which builds a frequency map. A trailing null (e.g. a custom
+            -- event without a user agent) yields null instead of the most
+            -- common non-null value; callers already render null as Unknown.
+            last(browser order by created_at) as browser,
+            last(platform order by created_at) as platform,
+            last(mobile order by created_at) as mobile,
+            last(country order by created_at) as country,
+            last(city order by created_at) as city
         from events
         where
             created_at >= ?::timestamp and created_at < ?::timestamp and

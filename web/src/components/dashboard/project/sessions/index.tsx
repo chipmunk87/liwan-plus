@@ -1,6 +1,6 @@
 import styles from "./sessions.module.css";
 
-import { useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowUpDownIcon, ChevronDownIcon, ChevronUpIcon, GlobeIcon, RotateCwIcon, UserIcon } from "lucide-react";
 
 import type { SessionEvent, SessionRow } from "@/constants";
@@ -33,9 +33,9 @@ export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 		limit,
 	});
 
-	const toggleExpand = (id: string) => {
+	const toggleExpand = useCallback((id: string) => {
 		setExpandedId((prev) => (prev === id ? null : id));
-	};
+	}, []);
 
 	return (
 		<article className={cls("card", styles.card)}>
@@ -84,7 +84,7 @@ export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 							key={session.visitorGroupId}
 							session={session}
 							isExpanded={expandedId === session.visitorGroupId}
-							onToggle={() => toggleExpand(session.visitorGroupId)}
+							onToggle={toggleExpand}
 							query={query}
 							timeFormat={timeFormat}
 						/>
@@ -95,7 +95,7 @@ export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 	);
 };
 
-const SessionItem = ({
+const SessionItem = memo(function SessionItem({
 	session,
 	isExpanded,
 	onToggle,
@@ -104,10 +104,10 @@ const SessionItem = ({
 }: {
 	session: SessionRow;
 	isExpanded: boolean;
-	onToggle: () => void;
+	onToggle: (id: string) => void;
 	query: ProjectQuery;
 	timeFormat: TimeFormat;
-}) => {
+}) {
 	const shortId = session.visitorGroupId.slice(0, 8);
 	const flag = session.country ? countryCodeToFlag(session.country) : null;
 	const locationLabel = [session.city, session.country].filter(Boolean).join(", ") || "Unknown Location";
@@ -116,11 +116,11 @@ const SessionItem = ({
 		<div className={styles.sessionItem} data-expanded={isExpanded}>
 			<div
 				className={styles.sessionSummary}
-				onClick={onToggle}
+				onClick={() => onToggle(session.visitorGroupId)}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" || e.key === " ") {
 						e.preventDefault();
-						onToggle();
+						onToggle(session.visitorGroupId);
 					}
 				}}
 				role="button"
@@ -177,7 +177,7 @@ const SessionItem = ({
 			)}
 		</div>
 	);
-};
+});
 
 const getStoredSortOrder = (): "asc" | "desc" => {
 	if (typeof window === "undefined") return "asc";
