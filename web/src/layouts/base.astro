@@ -13,7 +13,7 @@ type Props = { title: string; hideFooter?: boolean };
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex" />
-    <meta name="description" content="liwan Web Analytics Dashboard" />
+    <meta name="description" content="Liwan-Plus Web Analytics Dashboard" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <Font cssVariable="--font-google-sans" />
     <ClientRouter />
@@ -28,7 +28,7 @@ type Props = { title: string; hideFooter?: boolean };
         } catch(e) {}
       })();
     </script>
-    <title>{Astro.props.title} | liwan</title>
+    <title>{Astro.props.title} | Liwan-Plus</title>
   </head>
   <body>
     <slot />
@@ -40,7 +40,8 @@ type Props = { title: string; hideFooter?: boolean };
             <span class="footer-theme"><ThemeSwitcher /></span>
             <small>
               <span>
-                Powered by <a href="https://liwan.dev" target="_blank">liwan.dev</a>
+                Powered by <a href="https://github.com/chipmunk87/liwan-plus" target="_blank" rel="noreferrer">Liwan-Plus</a>
+                <span id="app-version"></span>
               </span>
             </small>
           </div>
@@ -57,6 +58,14 @@ type Props = { title: string; hideFooter?: boolean };
           if (fs) document.documentElement.setAttribute("data-font-size", fs);
         } catch(e) {}
       });
+      try {
+        var cfgEl = document.getElementById("liwan-config");
+        var ver = cfgEl ? JSON.parse(cfgEl.textContent || "{}").version : null;
+        if (typeof ver === "string" && ver) {
+          var verEl = document.getElementById("app-version");
+          if (verEl) verEl.textContent = "v" + ver;
+        }
+      } catch(e) {}
     </script>
     <style>
       footer {

@@ -56,7 +56,7 @@ const ProviderSettings = ({
 	<>
 		<fieldset className={styles.providerFieldset}>
 			<legend>Sign-in method</legend>
-			<p>Use liwan passwords only, or add single sign-on with one external provider.</p>
+			<p>Use Liwan-Plus passwords only, or add single sign-on with one external provider.</p>
 			<div className={styles.providerGrid}>
 				<label className={styles.providerCard}>
 					<input
@@ -71,7 +71,7 @@ const ProviderSettings = ({
 					</span>
 					<span className={styles.providerText}>
 						<strong>Internal</strong>
-						<small>liwan username and password</small>
+						<small>Liwan-Plus username and password</small>
 					</span>
 				</label>
 				{providers.map((provider) => (
@@ -94,7 +94,7 @@ const ProviderSettings = ({
 				))}
 			</div>
 			{!settings.enabled && (
-				<p className={styles.internalStatus}>Users sign in with their liwan username and password.</p>
+				<p className={styles.internalStatus}>Users sign in with their Liwan-Plus username and password.</p>
 			)}
 		</fieldset>
 		{settings.enabled && (

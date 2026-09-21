@@ -104,6 +104,7 @@ const CONFIG_PLACEHOLDER: &str = "__LIWAN_CONFIG__";
 struct HtmlConfig {
     base_url: String,
     disable_favicons: bool,
+    version: String,
 }
 
 pub(super) async fn serve(
@@ -171,8 +172,11 @@ pub(super) async fn serve(
             tracing::error!("failed to read embedded HTML as UTF-8: {err}");
             StatusCode::INTERNAL_SERVER_ERROR
         })?;
-        let config =
-            HtmlConfig { base_url: state.config.base_url.clone(), disable_favicons: state.config.disable_favicons };
+        let config = HtmlConfig {
+            base_url: state.config.base_url.clone(),
+            disable_favicons: state.config.disable_favicons,
+            version: env!("CARGO_PKG_VERSION").to_string(),
+        };
         let config_json = serde_json::to_string(&config).map_err(|err| {
             tracing::error!("failed to serialize HTML config: {err}");
             StatusCode::INTERNAL_SERVER_ERROR

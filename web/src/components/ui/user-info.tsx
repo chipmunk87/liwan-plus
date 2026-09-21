@@ -35,7 +35,7 @@ export const LoginButton = () => {
 					</a>
 				</li>
 				<li>
-					<a href="https://liwan.dev" target="_blank" rel="noreferrer">
+					<a href="https://github.com/chipmunk87/liwan-plus" target="_blank" rel="noreferrer">
 						<HelpCircle size="16" />
 						Help
 						<SquareArrowOutUpRightIcon size="16" className={styles.external} />
