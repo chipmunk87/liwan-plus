@@ -77,7 +77,7 @@ if (typeof document !== "undefined") {
 	defaultExit = scriptEl?.getAttribute("data-exit") !== "false";
 }
 
-const log = (message: string) => console.info(`[liwan]: ${message}`);
+const log = (message: string) => console.info(`[liwan-plus]: ${message}`);
 const ignore = (reason: string) => log(`Ignoring event: ${reason}`);
 const reject = (message: string) => {
 	throw new Error(`Failed to send event: ${message}`);
@@ -141,7 +141,7 @@ const sanitizeUrl = (value: string) => {
 };
 
 /**
- * Sends an event to the Liwan API.
+ * Sends an event to the Liwan-Plus API.
  *
  * @param name The name of the event. Defaults to "pageview".
  * @param options Additional options for the event. See {@link EventOptions}.
@@ -224,7 +224,7 @@ export async function event(name: string = "pageview", options?: EventOptions): 
  * Sends an initial pageview immediately and tracks subsequent client-side
  * navigations using the Navigation API when available, with `popstate` as a fallback.
  *
- * Calling this function marks Liwan as loaded through `window.__liwan_loaded`.
+ * Calling this function marks Liwan-Plus as loaded through `window.__liwan_loaded`.
  *
  * @param options Options passed to each pageview event.
  *

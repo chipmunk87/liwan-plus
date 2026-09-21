@@ -1,4 +1,4 @@
-# Liwan Tracker
+# Liwan-Plus Tracker
 
 Tracking script for [Liwan](https://liwan.dev), an open-source analytics platform.
 

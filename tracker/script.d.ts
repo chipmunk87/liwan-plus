@@ -38,7 +38,7 @@ export type EventOptions = {
     exit?: boolean;
 };
 /**
- * Sends an event to the Liwan API.
+ * Sends an event to the Liwan-Plus API.
  *
  * @param name The name of the event. Defaults to "pageview".
  * @param options Additional options for the event. See {@link EventOptions}.
@@ -62,7 +62,7 @@ export declare function event(name?: string, options?: EventOptions): Promise<vo
  * Sends an initial pageview immediately and tracks subsequent client-side
  * navigations using the Navigation API when available, with `popstate` as a fallback.
  *
- * Calling this function marks Liwan as loaded through `window.__liwan_loaded`.
+ * Calling this function marks Liwan-Plus as loaded through `window.__liwan_loaded`.
  *
  * @param options Options passed to each pageview event.
  *

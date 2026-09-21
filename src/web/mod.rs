@@ -147,7 +147,7 @@ pub fn router(app: Arc<Liwan>, queues: EventQueues) -> Result<(axum::Router<()>,
     });
 
     let mut api = openapi::OpenApi {
-        info: openapi::Info { title: "Liwan API".to_string(), ..Default::default() },
+        info: openapi::Info { title: "Liwan-Plus API".to_string(), ..Default::default() },
         ..openapi::OpenApi::default()
     };
 
@@ -242,12 +242,12 @@ pub async fn start_webserver(app: Arc<Liwan>, queues: EventQueues) -> Result<()>
     match app.onboarding.token() {
         Some(onboarding) => {
             let get_started = format!("{}/setup?t={}", app.config.base_url, onboarding);
-            tracing::info!("It looks like you're running Liwan for the first time!");
+            tracing::info!("It looks like you're running Liwan-Plus for the first time!");
             tracing::info!("You can get started by visiting: {get_started}");
             tracing::info!("To see all available commands, run `liwan --help`");
         }
         _ => {
-            tracing::info!("Liwan is running on {} ({})", app.config.base_url, app.config.listen_addr());
+            tracing::info!("Liwan-Plus is running on {} ({})", app.config.base_url, app.config.listen_addr());
         }
     }
 

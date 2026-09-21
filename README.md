@@ -47,7 +47,7 @@ This edition builds directly upon Liwan's ultra-lightweight Rust + Svelte founda
 See your most-visited pages, where visitors come from, and how traffic changes over time. The dashboard updates automatically, with bot filtering enabled by default.
 
 **Easy to self-host**\
-Run Liwan as a single binary or Docker container. The dashboard and embedded database are built in, with no external database services (Postgres, Redis, ClickHouse) required.
+Run Liwan-Plus as a single binary or Docker container. The dashboard and embedded database are built in, with no external database services (Postgres, Redis, ClickHouse) required.
 
 **Privacy first**\
 No tracking cookies or invasive fingerprinting. Your analytics data stays exclusively on your own server.
