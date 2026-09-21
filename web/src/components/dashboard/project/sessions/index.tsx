@@ -1,6 +1,6 @@
 import styles from "./sessions.module.css";
 
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpDownIcon, ChevronDownIcon, ChevronUpIcon, GlobeIcon, RotateCwIcon, UserIcon } from "lucide-react";
 
 import type { SessionEvent, SessionRow } from "@/constants";
@@ -25,12 +25,36 @@ function formatRelativeTime(dateStr: string): string {
 export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 	const [limit, setLimit] = useState(50);
 	const [expandedId, setExpandedId] = useState<string | null>(null);
+	// Don't fire the heaviest dashboard query until the card scrolls into view.
+	const [hasBeenVisible, setHasBeenVisible] = useState(false);
+	const cardRef = useRef<HTMLElement>(null);
 	const { timeFormat } = useTimeFormat();
+
+	useEffect(() => {
+		if (hasBeenVisible) return;
+		const el = cardRef.current;
+		if (!el || typeof IntersectionObserver === "undefined") {
+			setHasBeenVisible(true);
+			return;
+		}
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) {
+					setHasBeenVisible(true);
+					observer.disconnect();
+				}
+			},
+			{ rootMargin: "200px" },
+		);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, [hasBeenVisible]);
 
 	const { sessions, isLoading, refetch } = useProjectSessions({
 		projectId: query.project.id,
 		range: query.range,
 		limit,
+		enabled: hasBeenVisible,
 	});
 
 	const toggleExpand = useCallback((id: string) => {
@@ -38,7 +62,7 @@ export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 	}, []);
 
 	return (
-		<article className={cls("card", styles.card)}>
+		<article ref={cardRef} className={cls("card", styles.card)}>
 			<div className={styles.header}>
 				<div className={styles.titleArea}>
 					<UserIcon size={18} />
@@ -71,7 +95,7 @@ export const SessionsCard = ({ query }: { query: ProjectQuery }) => {
 				</div>
 			</div>
 
-			{isLoading && sessions.length === 0 ? (
+			{!hasBeenVisible || (isLoading && sessions.length === 0) ? (
 				<div className={styles.loadingSpinner}>
 					<div className="loading-spinner" />
 				</div>
